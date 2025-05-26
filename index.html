@@ -12,6 +12,28 @@
       margin: 0;
       padding: 40px 20px;
     }
+
+    h1, h2, hr, img, .linkbox, .footer-link {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    h1 { animation-delay: 0.2s; }
+    hr:first-of-type { animation-delay: 0.4s; }
+    h2 { animation-delay: 0.6s; }
+    hr:last-of-type { animation-delay: 0.8s; }
+    img { animation-delay: 1.0s; }
+    .linkbox { animation-delay: 1.4s; }
+    .footer-link { animation-delay: 1.8s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     h1 {
       font-size: 24px;
       margin-bottom: 10px;
@@ -24,7 +46,7 @@
       border: none;
       border-top: 1px solid #ccc;
       margin: 20px 0;
-      width: 80%;
+      width: 100%;
     }
     img {
       max-width: 600px;
@@ -33,32 +55,21 @@
       border: 1px solid #ccc;
       margin: 30px 0;
     }
-    .linkbox {
-      margin-top: 30px;
-    }
-    .mystery-link {
-      font-size: 18px;
+    .mystery-link, .footer-link a {
+      font-size: 20px;
       text-decoration: none;
       color: #0077cc;
       font-weight: bold;
+      display: block;
+      margin: 15px 0;
     }
-    .mystery-link:hover {
+    .mystery-link:hover,
+    .footer-link a:hover {
       color: #ff00aa;
       text-decoration: underline;
     }
     .footer-link {
       margin-top: 60px;
-      font-size: 16px;
-      color: #444;
-    }
-    .footer-link a {
-      color: #0077cc;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .footer-link a:hover {
-      color: #ff00aa;
-      text-decoration: underline;
     }
   </style>
 </head>
@@ -74,11 +85,9 @@
     </a>
   </div>
   <div class="footer-link">
-    <p>
-      <a href="https://www.youtube.com/@delceisnotagoodguy" target="_blank">
-        ２年前から動画を出してる男がいる…ってコト!?
-      </a>
-    </p>
+    <a href="https://www.youtube.com/@delceisnotagoodguy" target="_blank">
+      ２年前から動画を出してる男がいる…ってコト!?
+    </a>
   </div>
 </body>
 </html>
