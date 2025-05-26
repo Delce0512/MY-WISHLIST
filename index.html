@@ -19,12 +19,11 @@
       animation: fadeUp 0.6s ease forwards;
     }
 
-    /* アニメーション遅延：1秒ベース + 個別ディレイ */
     h1 { animation-delay: 1.2s; }
     hr:first-of-type { animation-delay: 1.4s; }
     h2 { animation-delay: 1.6s; }
     hr:last-of-type { animation-delay: 1.8s; }
-    img { animation-delay: 2.0s; }
+    img.main { animation-delay: 2.0s; }
     .linkbox { animation-delay: 2.4s; }
     .footer-link { animation-delay: 2.8s; }
 
@@ -56,21 +55,41 @@
       border: 1px solid #ccc;
       margin: 30px 0;
     }
-    .mystery-link, .footer-link a {
+    .mystery-link, .footer-link a, .reveal-trigger {
       font-size: 20px;
       text-decoration: none;
       color: #0077cc;
       font-weight: bold;
       display: block;
       margin: 15px 0;
+      cursor: pointer;
     }
     .mystery-link:hover,
-    .footer-link a:hover {
+    .footer-link a:hover,
+    .reveal-trigger:hover {
       color: #ff00aa;
       text-decoration: underline;
     }
     .footer-link {
       margin-top: 60px;
+    }
+    .hidden-content {
+      display: none;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .typing {
+      white-space: pre-wrap;
+      border-left: 2px solid #888;
+      padding-left: 10px;
+      animation: caret 0.8s infinite;
+    }
+    @keyframes caret {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #888; }
     }
   </style>
 </head>
@@ -79,16 +98,65 @@
   <hr>
   <h2>無限大Anantaの情報</h2>
   <hr>
-  <img src="ascii_art.png" alt="ASCII Art">
+  <img src="ascii_art.png" alt="ASCII Art" class="main">
+
   <div class="linkbox">
     <a class="mystery-link" href="https://www.anantagame.com/jp/index.html" target="_blank">
       ここを踏むと…凄いことが起きるって、コト!?
     </a>
   </div>
+
   <div class="footer-link">
     <a href="https://www.youtube.com/@delceisnotagoodguy" target="_blank">
       ２年前から動画を出してる男がいる…ってコト!?
     </a>
   </div>
+
+  <div class="footer-link">
+    <span class="reveal-trigger" onclick="reveal()">押すなよ！絶対に押すなよ！本当に押すなよ！！</span>
+  </div>
+
+  <div class="hidden-content" id="hiddenContent">
+    <p class="typing" id="text"></p>
+    <img src="b1.png" alt="Banshee1">
+    <p>え！？天使！？<br>いえ、バンシーです。</p>
+    <p>まず謝罪の前になぜ私がこのようなクソページを作ってしまったか？その経緯を説明させていただきます。
+
+一般的にYouTuberがゲーム関連の動画を作成することは間接的にそのゲームを応援、支援することに繋がると言われています。
+
+よって私がこれまで無限大Anantaに費やした時間を考えれば、このようなクソページを作成するくらいの行為はOKだろうと、安易な考え方をしてしまい、このような行為をとってしまいました。
+
+それに伴い、画面の奥でこちらを見つめるバンシーの表情は、まんざらでもないという顔をしていたので、
+
+「「アラ、いいですねえ」の波が何度も押し寄せて来ちゃって、最終的にはXにポストするという結果となってしまいました。</p>
+    <img src="b2.png" alt="Banshee2">
+    <p>うお！？女神！？<br>いえ、バンシーです。</p>
+    <p>この度、私は無限大Ananta民の皆様に、多大なるご迷惑をお掛けしたことを、深く謝罪したいと思います。
+なぜ私がこのようなクソページを作ったかというと、
+「こんなに可愛いなら、さぞかし人気キャラだろう」という、場当たり的な発想からで、
+僭越ながらバンシーのスクショが100枚を超えてしまったことは紛れもない事実であります。
+しかしながら、考えてみれば「可愛い＝kawaii＝好き」というのは国境を越えた不変の事実であり、
+そのことから寄せては返す「あら、いいですねぇ」の波を止められなかったのも事実であります。
+よってはなはだ遺憾ではありますが、今回のことは水に流していただければこれまた幸い、という所存であります。</p>
+  </div>
+
+  <script>
+    const textBlock = `\u2026ふぅ～\n私は忠告しましたから、何を見ても自己責任ですよ。`;
+    let i = 0;
+    let typingInterval;
+
+    function reveal() {
+      document.getElementById('hiddenContent').style.display = 'block';
+      const textEl = document.getElementById('text');
+      typingInterval = setInterval(() => {
+        if (i < textBlock.length) {
+          textEl.textContent += textBlock[i++];
+        } else {
+          clearInterval(typingInterval);
+          textEl.classList.remove('typing');
+        }
+      }, 50);
+    }
+  </script>
 </body>
 </html>
